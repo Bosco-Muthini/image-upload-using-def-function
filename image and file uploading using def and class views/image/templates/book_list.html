@@ -1,0 +1,44 @@
+{% block content %}
+<h2>Book List</h2>
+<table>
+    <thead>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>PDF</th>
+        <th>Open PDF</th>
+        <th>Download</th>
+    </thead>
+    <tbody>
+        {%for book in booklist%}
+            <tr>
+                <td>
+                    {%if book.cover%}
+                    <img src="{{book.cover.url}}" alt="{{book.title}}" height="100px" width="auto">
+                    {%else%}
+                    <span>No cover</span>
+                    {%endif%}
+
+                    <!-- {{book.cover}} -->
+                </td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.pdf}}</td>
+                <td>
+                    <a href="{{book.pdf.url}}" target="_blank">
+                        Open PDF
+                    </a>
+                </td>
+                <td>
+                    <a href="{{book.pdf.url}}">
+                        Download PDF
+                    </a>
+                </td>
+            </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<br>
+<a href="{% url 'upload_book' %}">Upload Book</a>
+
+{% endblock content %}
